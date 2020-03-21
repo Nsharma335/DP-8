@@ -1,0 +1,47 @@
+//time: O(n^2)
+//space: O(1)
+class Solution {
+    public int numberOfArithmeticSlices(int[] A) {
+        if(A==null || A.length==0) return 0;
+        int count=0;
+        
+        for(int i=0;i<A.length-2;i++)
+        {
+            int diff=A[i+1]-A[i];
+            //start j loop from i+1
+            for(int j=i+1;j<A.length-1;j++)
+            {
+                
+                if(A[j+1]-A[j]==diff)
+                    count++;
+                
+                else 
+                    break;
+            }
+        }
+        return count;
+    }
+}
+//time: O(n) : n is length of array
+//space:O(n)
+class Solution {
+    public int numberOfArithmeticSlices(int[] A) {
+        if(A==null || A.length==0) return 0;
+        int count=0;
+        int[] res=new int[A.length];
+        int sum=0;
+        //starts from last 3rd element
+       for(int i=A.length-3;i>=0;i--)
+       {
+           if(A[i+1]-A[i]==A[i+2]-A[i+1])
+           {
+              res[i]=res[i+1]+1; 
+               //maintain sum of res array for each index
+               sum=sum+res[i];
+           }
+       }
+        //return total sum which willbe the no of slices
+    return sum;
+       
+    }
+}
